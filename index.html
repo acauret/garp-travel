@@ -65,9 +65,13 @@
     min-height: 88vh;
     display: flex; align-items: flex-end;
     overflow: hidden;
-    background: linear-gradient(180deg, #0e2f3c 0%, #1e5f5b 42%, #d98e4f 78%, #e8b464 100%);
+    background: url("images/hero.jpg") center 65% / cover no-repeat, #1e5f5b;
   }
-  .scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(14,47,60,.55) 0%, rgba(14,47,60,.15) 40%, rgba(13,35,33,.72) 100%);
+  }
 
   .hero-copy {
     position: relative; z-index: 3;
@@ -107,20 +111,6 @@
     to   { opacity: 1; transform: none; }
   }
 
-  .sun {
-    position: absolute;
-    right: clamp(4%, 12vw, 16%); top: 24%;
-    width: clamp(120px, 22vw, 260px); aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(circle, #f9e3ae 0%, #eec06a 55%, rgba(238,192,106,0) 72%);
-    animation: sunrise 2.4s .2s both ease-out;
-    z-index: 1;
-  }
-  @keyframes sunrise {
-    from { opacity: 0; transform: translateY(40px) scale(.9); }
-    to   { opacity: 1; transform: none; }
-  }
-
   /* drifting plane */
   .plane {
     position: absolute; z-index: 2;
@@ -133,6 +123,37 @@
     from { transform: translateX(0) translateY(0) rotate(4deg); }
     50%  { transform: translateX(60vw) translateY(3vh) rotate(-2deg); }
     to   { transform: translateX(125vw) translateY(-2vh) rotate(4deg); }
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(.8rem, 2vw, 1.6rem);
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: clamp(3rem, 7vh, 5rem) clamp(1.2rem, 6vw, 5rem) 0;
+  }
+  .gallery figure {
+    position: relative;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    box-shadow: 0 24px 48px -28px rgba(20,32,31,.5);
+  }
+  .gallery figure:nth-child(2) { transform: translateY(clamp(1rem, 3vw, 2.4rem)); }
+  .gallery img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .8s cubic-bezier(.2,.7,.2,1);
+  }
+  .gallery figure:hover img { transform: scale(1.06); }
+  .gallery figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 1rem 1.2rem;
+    font-family: "Fraunces", serif;
+    font-size: clamp(.95rem, 1.8vw, 1.2rem);
+    color: var(--cream);
+    background: linear-gradient(transparent, rgba(13,35,33,.75));
   }
 
   /* ---------- contact ---------- */
@@ -211,9 +232,12 @@
   @media (max-width: 720px) {
     .contact { grid-template-columns: 1fr; }
     .hero { min-height: 78vh; }
+    .gallery { grid-template-columns: 1fr; }
+    .gallery figure { aspect-ratio: 16 / 10; }
+    .gallery figure:nth-child(2) { transform: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .plane, .sun, .kicker, h1, .hero-sub { animation: none; }
+    .plane, .kicker, h1, .hero-sub { animation: none; }
   }
 </style>
 </head>
@@ -225,18 +249,9 @@
 </header>
 
 <section class="hero">
-  <div class="sun" aria-hidden="true"></div>
-
   <svg class="plane" viewBox="0 0 64 64" aria-hidden="true" fill="none">
     <path d="M2 36 L50 22 L62 24 L54 30 L58 34 L50 34 L30 42 Z" fill="#f6f1e7" opacity=".95"/>
     <path d="M30 42 L26 52 L32 44 Z" fill="#f6f1e7" opacity=".8"/>
-  </svg>
-
-  <!-- layered landscape -->
-  <svg class="scene" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <path d="M0 560 L280 380 L420 500 L620 330 L820 520 L1440 560 L1440 800 L0 800 Z" fill="#173c40" opacity=".55"/>
-    <path d="M0 640 L360 470 L560 600 L840 440 L1100 590 L1440 500 L1440 800 L0 800 Z" fill="#12302f" opacity=".8"/>
-    <path d="M0 720 Q360 640 720 700 T1440 690 L1440 800 L0 800 Z" fill="#0d2321"/>
   </svg>
 
   <div class="hero-copy">
@@ -244,6 +259,21 @@
     <h1><span class="cap">G</span>lobal, <span class="cap">A</span>ll <span class="cap">R</span>ound<br>&amp; <span class="cap">P</span>ersonalised <em>Travel</em></h1>
     <p class="hero-sub">Journeys designed around the way you travel — anywhere in the world, always personal.</p>
   </div>
+</section>
+
+<section class="gallery" aria-label="Destinations">
+  <figure>
+    <img src="images/santorini.jpg" alt="Whitewashed houses of Oia, Santorini at dusk" loading="lazy">
+    <figcaption>Island escapes</figcaption>
+  </figure>
+  <figure>
+    <img src="images/safari.jpg" alt="Lone acacia tree on the African savanna at sunset" loading="lazy">
+    <figcaption>Safari &amp; wild places</figcaption>
+  </figure>
+  <figure>
+    <img src="images/mountains.jpg" alt="Alpine peaks rising above a sea of clouds at sunrise" loading="lazy">
+    <figcaption>Mountain adventures</figcaption>
+  </figure>
 </section>
 
 <section class="contact" id="contact">
