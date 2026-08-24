@@ -241,14 +241,10 @@
     background: #fff;
     color: var(--ink);
   }
-  .abta .mark {
-    display: flex; align-items: center; gap: .45rem;
-    font-family: "Outfit", sans-serif;
-    font-weight: 600; font-size: 1.5rem; letter-spacing: .06em;
-  }
-  .abta .mark svg { display: block; }
-  .abta .tag {
-    font-size: .72rem; letter-spacing: .06em; color: #4a534f;
+  .abta .logo {
+    display: block;
+    width: clamp(140px, 20vw, 190px);
+    height: auto;
   }
   .abta .num {
     font-size: .95rem; font-weight: 500; letter-spacing: .1em;
@@ -317,13 +313,7 @@
 
 <footer>
   <div class="abta" aria-label="ABTA member, number P7384">
-    <div class="mark">
-      <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true">
-        <path d="M2 23 L13 2 L24 23 Z" fill="none" stroke="#14201f" stroke-width="2.6" stroke-linejoin="round"/>
-      </svg>
-      ABTA
-    </div>
-    <div class="tag">Travel with confidence</div>
+    <img class="logo" src="images/abta.svg" alt="ABTA — Travel with confidence">
     <div class="num">ABTA No. P7384</div>
   </div>
   GARP — Global All Round &amp; Personalised Travel
