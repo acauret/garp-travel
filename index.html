@@ -229,26 +229,29 @@
     color: #7a827d;
   }
 
-  /* ---------- ABTA badge ---------- */
-  .abta {
-    display: flex; flex-direction: column; align-items: center;
-    gap: .35rem;
+  /* ---------- accreditation badges ---------- */
+  .badges {
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch;
+    gap: 1rem;
     margin: 0 auto 1.4rem;
-    width: max-content;
+  }
+  .badge {
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    gap: .6rem;
     padding: 1rem 1.6rem;
     border: 1px solid var(--sand);
     border-radius: .9rem;
     background: #fff;
     color: var(--ink);
   }
-  .abta .logo {
+  .badge .logo {
     display: block;
     width: clamp(140px, 20vw, 190px);
     height: auto;
   }
-  .abta .num {
+  .badge.iata .logo { width: clamp(64px, 9vw, 86px); }
+  .badge .num {
     font-size: .95rem; font-weight: 500; letter-spacing: .1em;
-    margin-top: .15rem;
   }
 
   @media (max-width: 720px) {
@@ -312,9 +315,15 @@
 </section>
 
 <footer>
-  <div class="abta" aria-label="ABTA member, number P7384">
-    <img class="logo" src="images/abta.svg" alt="ABTA — Travel with confidence">
-    <div class="num">ABTA No. P7384</div>
+  <div class="badges">
+    <div class="badge" aria-label="ABTA member, number P7384">
+      <img class="logo" src="images/abta.svg" alt="ABTA — Travel with confidence">
+      <div class="num">ABTA No. P7384</div>
+    </div>
+    <div class="badge iata" aria-label="IATA accredited, number 10548020">
+      <img class="logo" src="images/iata.svg" alt="IATA — International Air Transport Association">
+      <div class="num">IATA No. 10548020</div>
+    </div>
   </div>
   GARP — Global All Round &amp; Personalised Travel
 </footer>
